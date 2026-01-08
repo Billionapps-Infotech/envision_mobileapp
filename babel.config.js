@@ -1,7 +1,9 @@
-module.exports = {
-  presets: ['module:@react-native/babel-preset'],
-  plugins: [
-    ['@babel/plugin-proposal-decorators', {legacy: true}],
-    'react-native-reanimated/plugin',
-  ],
+module.exports = function(api) {
+  api.cache(true);
+  return {
+    presets: ['babel-preset-expo', '@babel/preset-flow'],
+    plugins: [
+      'react-native-reanimated/plugin',
+    ],
+  };
 };

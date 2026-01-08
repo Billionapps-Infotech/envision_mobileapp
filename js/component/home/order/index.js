@@ -15,9 +15,8 @@ import Icon from '../../icon';
 import { api,globalImages, globalColors } from '../../../helper';
 import stylecust from '../../helper/resfont';
 import Constants from '../../../constants';
-import DeviceInfo from 'react-native-device-info';
+import DeviceInfo from '../../../helper/deviceCompat';
 import store from '../../../store';
-import {Actions} from 'react-native-router-flux';
 import {observable} from 'mobx';
 type Props = {};
 export default class App extends Component<Props> {
@@ -73,7 +72,7 @@ export default class App extends Component<Props> {
         active:value,
         activeTxt:txt,
         activeNumber:"",
-        @observable data: []
+        data: []
      }
    }
    subGeneral=()=>{
@@ -430,7 +429,7 @@ export default class App extends Component<Props> {
                       active:'customer_po',
                       activeTxt:'Customer PO',
                       activeNumber:"",
-                      @observable data: []
+                      data: []
                    }
                  }
                  }}

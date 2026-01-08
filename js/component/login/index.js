@@ -16,11 +16,11 @@ import {_emailValidation} from '../helper/validate';
 import IphoneHeader from '../header/iphonexhr';
 import TextField from '../helper/textField';
 import CheckBox from '../helper/checkbox';
-import DeviceInfo from 'react-native-device-info';
+import DeviceInfo from '../../helper/deviceCompat';
 import Constants from '../../constants';
 import store from '../../store';
-import {Actions} from 'react-native-router-flux';
-import Login from 'react-native-login-keycloak';
+import { Actions } from '../../helper/navigation';
+import Login from '../../helper/keycloakAuth';
 
 
 type Props = {};

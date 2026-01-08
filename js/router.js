@@ -42,7 +42,9 @@ function HomeStackNavigator() {
     );
 }
 
-export const navigationRef = React.createRef();
+import { createNavigationContainerRef } from '@react-navigation/native';
+
+export const navigationRef = createNavigationContainerRef();
 
 export default function NavRouter({hasToken, hasNoAccess}) {
     return (

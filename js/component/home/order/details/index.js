@@ -12,13 +12,12 @@ import {ScrollView, StatusBar, ActivityIndicator,Dimensions, Platform, StyleShee
 import { api, globalImages, globalColors } from '../../../../helper';
 import Constants from '../../../../constants';
 import stylecust from '../../../helper/resfont';
-import DeviceInfo from 'react-native-device-info';
+import DeviceInfo from '../../../../helper/deviceCompat';
 import store from '../../../../store';
-import {Actions} from 'react-native-router-flux';
 import Header from '../../../header';
 import IphoneHeader from '../../../header/iphonexhr';
 import Icon from '../../../icon';
-import IconFont from 'react-native-vector-icons/FontAwesome';
+import { FontAwesome as IconFont } from '@expo/vector-icons';
 
 type Props = {};
 export default class App extends Component<Props> {

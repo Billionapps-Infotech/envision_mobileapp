@@ -11,11 +11,11 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Dimensions,TouchableOpacity} from 'react-native';
 import Icon from '../icon';
 import { globalImages, globalColors } from '../../helper';
-import { ifIphoneX , isIphoneX} from 'react-native-iphone-x-helper';
+import { ifIphoneX, isIphoneX } from '../../helper/iphoneXHelper';
 import stylecust from '../helper/resfont';
-import DeviceInfo from 'react-native-device-info';
+import DeviceInfo from '../../helper/deviceCompat';
 
-import IconFont from 'react-native-vector-icons/FontAwesome';
+import { FontAwesome as IconFont } from '@expo/vector-icons';
 
 type Props = {};
 export default class App extends Component<Props> {

@@ -8,7 +8,7 @@ import React, {Component} from 'react';
 import {
     View,
 } from 'react-native';
-import { isIphoneX } from 'react-native-iphone-x-helper';
+import { isIphoneX } from '../../helper/iphoneXHelper';
 import { globalImages, globalColors } from '../../helper';
 
 export default class IphoneXHr extends Component<{}> {

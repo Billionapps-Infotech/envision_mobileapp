@@ -10,7 +10,7 @@ import {
     Dimensions
 } from 'react-native';
 import {globalColors, setToken, saveKey, getKey} from './helper';
-import DeviceInfo from 'react-native-device-info';
+import DeviceInfo from './helper/deviceCompat';
 import store from './store';
 import stylecust from './component/helper/resfont';
 
@@ -55,7 +55,7 @@ export default class App extends Component {
 
     loadDeviceInfo = async () => {
         try {
-            const isLandscape = await DeviceInfo.isLandscape();
+            const isLandscape = DeviceInfo.isLandscape();
             const isTablet = DeviceInfo.isTablet();
             this.setState({isLandscape, isTablet});
         } catch (e) {

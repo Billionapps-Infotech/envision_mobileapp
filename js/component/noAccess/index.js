@@ -13,8 +13,7 @@ import {Platform, StatusBar,ScrollView,StyleSheet, Text,View, Image,TouchableWit
 import { globalColors ,globalImages, api,setToken,saveKey,getKey} from '../../helper';
 import stylecust from '../helper/resfont';
 import IphoneHeader from '../header/iphonexhr';
-import DeviceInfo from 'react-native-device-info';
-import {Actions} from 'react-native-router-flux';
+import DeviceInfo from '../../helper/deviceCompat';
 import store from '../../store';
 
 

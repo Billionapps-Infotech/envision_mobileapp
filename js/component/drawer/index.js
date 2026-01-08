@@ -18,14 +18,13 @@ import {
 } from 'react-native';
 import Icon from '../icon';
 import Constants from '../../constants';
-import { Actions } from 'react-native-router-flux';
 import store from '../../store';
-import { observable} from 'mobx'; ;
 import { api, setToken, deleteKey } from '../../helper';
 import { globalImages, globalColors } from '../../helper';
 import stylecust from '../helper/resfont';
 import IphoneHeader from '../header/iphonexhr';
-import DeviceInfo from 'react-native-device-info';
+import DeviceInfo from '../../helper/deviceCompat';
+import { Actions } from '../../helper/navigation';
 
 function DrawerItem(props) {
     let text = props.text;
@@ -103,14 +102,14 @@ function DrawerItem(props) {
                    active:'item_num',
                    activeTxt:'Item Number',
                    activeNumber:"",
-                   @observable data: []
+                   data: []
                 }
                 store.myorder = {
                    next_page: 0,
                    active:'order_num',
                    activeTxt:'Order Number',
                    activeNumber:"",
-                   @observable data: []
+                   data: []
                 }
                 store.currentroute = "product";
                 store.currentIndex = 0;

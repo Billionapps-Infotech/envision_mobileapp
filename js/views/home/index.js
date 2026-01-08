@@ -14,7 +14,7 @@ import Header from '../../component/header';
 import IphoneHeader from '../../component/header/iphonexhr';
 import TabView from '../../component/home/tabView';
 import { globalImages, globalColors } from '../../helper';
-import {Actions} from 'react-native-router-flux';
+import { Actions } from '../../helper/navigation';
 import store from '../../store';
 
 type Props = {};

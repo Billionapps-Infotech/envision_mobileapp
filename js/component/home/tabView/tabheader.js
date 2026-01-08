@@ -13,7 +13,7 @@ import envision from '../../home';
 import stylecust from '../../helper/resfont';
 const { width } = Dimensions.get('window');
 import { globalImages, globalColors } from '../../../helper';
-import DeviceInfo from 'react-native-device-info';
+import DeviceInfo from '../../../helper/deviceCompat';
 import store from '../../../store';
 
 class TabHeader extends Component {

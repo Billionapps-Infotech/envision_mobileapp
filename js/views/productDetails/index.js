@@ -13,7 +13,7 @@ import Header from '../../component/header';
 import IphoneHeader from '../../component/header/iphonexhr';
 import ProductDetailsView from '../../component/home/product/details';
 import { globalImages, globalColors } from '../../helper';
-import {Actions} from 'react-native-router-flux';
+import { Actions } from '../../helper/navigation';
 
 type Props = {};
 export default class App extends Component<Props> {
