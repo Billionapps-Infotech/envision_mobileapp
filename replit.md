@@ -107,11 +107,12 @@ Then scan QR code with Expo Go app on your phone.
 - `Actions.navigate()` wrapper available for backward compatibility
 - Screen components receive `navigation` prop automatically
 
-## Keycloak Configuration
-Set these in `js/helper/keycloakAuth.js` before building:
-- `KEYCLOAK_URL`: Your Keycloak server URL
-- `KEYCLOAK_REALM`: Keycloak realm name
-- `KEYCLOAK_CLIENT_ID`: OAuth2 client ID
+## Authentication
+The app uses a custom API-based login (not Keycloak OAuth). Authentication is configured in `js/constants/index.js`:
+- **API Base URL**: `https://cfauth01.coreforce.com/`
+- **Login Endpoint**: `auth/`
+
+Users log in with username/password which is posted directly to the API.
 
 ## Resources
 - [Expo Docs](https://docs.expo.dev/)

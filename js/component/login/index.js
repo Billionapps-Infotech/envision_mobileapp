@@ -20,7 +20,6 @@ import DeviceInfo from '../../helper/deviceCompat';
 import Constants from '../../constants';
 import store from '../../store';
 import { Actions } from '../../helper/navigation';
-import Login from '../../helper/keycloakAuth';
 
 
 type Props = {};
