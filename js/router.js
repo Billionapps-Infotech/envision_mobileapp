@@ -1,112 +1,81 @@
-/**
- * https://stackoverflow.com/questions/33553112/react-native-asyncstorage-fetches-data-after-rendering
- */
-
-import React, {Component} from 'react';
-import {BackHandler,Alert} from 'react-native';
+import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import LoginPage from './component/login';
-import {Router, Stack, Scene, Tabs, tabBar, Actions, Drawer, ActionConst, Reducer} from 'react-native-router-flux';
-import DrawerContent from './component/drawer';
 import Home from './views/home';
 import ProductDetails from './component/home/product/details';
 import OrderDetails from './component/home/order/details';
 import NoAccess from './views/noAccess';
-import { globalImages } from './helper';
-import TabIcon from './component/tabicon';
-import stylecust from './component/helper/resfont';
+import DrawerContent from './component/drawer';
 
-const tabStyle = {
-    borderRightWidth: 1,
-    borderColor: '#ccc',
-    paddingBottom: 8
-};
-const labelStyle = {
-    fontFamily: 'Roboto-Regular',
-    fontSize: stylecust.em(1),
-};
+const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
-
-TabBarOnPress = (targetTab) => {
-     //console.log(JSON.stringify(targetTab));
-    let routes = targetTab;
-    //let key = targetTab.route.routeName;
-
-};
-
-var backhardware = false;
-export default class NavRouter extends Component<{}> {
-  constructor(props){
-      super(props);
-      this.handleBackButton = this.handleBackButton.bind(this);
-  }
-  handleBackButton = () => {
-  //  alert('backhadn');
-    if(this.backhardware){
-      Alert.alert(
-        'Exit',
-        'Exiting the application?',
-        [
-          {text: 'Cancel', onPress: () => {console.log('Cancel Pressed'); this.backhardware=false;return true;}, style: 'cancel'},
-          {text: 'OK', onPress: () =>{ console.log('OK Pressed'); BackHandler.exitApp(); this.backhardware=false;return false;}},
-          ],
-        { cancelable: false }
+function MainDrawer({hasNoAccess}) {
+    return (
+        <Drawer.Navigator
+            drawerContent={(props) => <DrawerContent {...props} />}
+            screenOptions={{
+                headerShown: false,
+                drawerType: 'front',
+                swipeEnabled: false,
+            }}
+            initialRouteName={hasNoAccess ? 'NoAccess' : 'HomeStack'}
+        >
+            <Drawer.Screen name="HomeStack" options={{title: 'Home'}}>
+                {(props) => <HomeStackNavigator {...props} />}
+            </Drawer.Screen>
+            <Drawer.Screen name="NoAccess" component={NoAccess} options={{title: 'No Access'}} />
+        </Drawer.Navigator>
     );
-    return true;
-   }else{
+}
 
-      this.backhardware = true;
+function HomeStackNavigator() {
+    return (
+        <Stack.Navigator screenOptions={{headerShown: false}}>
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="ProductDetails" component={ProductDetails} />
+            <Stack.Screen name="OrderDetails" component={OrderDetails} />
+        </Stack.Navigator>
+    );
+}
 
-    return true;
-   }
-  }
-   componentDidMount(){
-     BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
-   }
-   componentWillUnmount() {
-     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
-   }
-    render() {
-        return (
-            <Router>
-                <Stack key="root" headerMode={'none'}>
-                    <Stack type="reset" key="login" initial={!this.props.hasToken}>
-                        <Scene
-                            component={LoginPage}
-                            key='LoginPage'
-                            title='Login'
-                            type="replace"
-                        />
-                    </Stack>
-                    <Drawer
-                          key="app"
-                    			drawerOpenRoute='DrawerOpen'
-                    			drawerCloseRoute= 'DrawerClose'
-                    			drawerToggleRoute='DrawerToggle'
-                          initial={this.props.hasToken}
-                          contentComponent={DrawerContent}
-                          type="reset"
-                          drawerLockMode='locked-closed'
-                          gesturesEnabled={false}
-                          drawerWidth={250}>
+export const navigationRef = React.createRef();
 
+export default function NavRouter({hasToken, hasNoAccess}) {
+    return (
+        <GestureHandlerRootView style={{flex: 1}}>
+            <NavigationContainer ref={navigationRef}>
+                <Stack.Navigator
+                    screenOptions={{
+                        headerShown: false,
+                    }}
+                    initialRouteName={hasToken ? 'Main' : 'Login'}
+                >
+                    <Stack.Screen name="Login" component={LoginPage} />
+                    <Stack.Screen name="Main">
+                        {(props) => <MainDrawer {...props} hasNoAccess={hasNoAccess} />}
+                    </Stack.Screen>
+                </Stack.Navigator>
+            </NavigationContainer>
+        </GestureHandlerRootView>
+    );
+}
 
-                          <Scene key="homemenu">
-                            <Scene initial={!this.props.hasNoAccess} key="home"  component={Home}
-                                   title="Home" {...this.props} />
-                            <Scene initial={this.props.hasNoAccess} key="NoAccess"  component={NoAccess}
-                                           title="Search" {...this.props} />
-                            <Scene key="menu" tabBarLabel={'Menu'} drawerLockMode='locked-closed'
-                                  iconName={'menuicon.png'} icon={TabIcon} component={DrawerContent}
-                                  title="Menu"/>
-                              <Scene key="ProductDetailsView"  component={ProductDetails}
-                                              title="product" />
-                              <Scene key="OrderDetailsView"  component={OrderDetails}
-                                              title="Order" />
-                           </Scene>
+export function navigate(name, params) {
+    navigationRef.current?.navigate(name, params);
+}
 
-                    </Drawer>
-                </Stack>
-            </Router>
-        );
-    }
+export function goBack() {
+    navigationRef.current?.goBack();
+}
+
+export function openDrawer() {
+    navigationRef.current?.dispatch({type: 'OPEN_DRAWER'});
+}
+
+export function closeDrawer() {
+    navigationRef.current?.dispatch({type: 'CLOSE_DRAWER'});
 }
