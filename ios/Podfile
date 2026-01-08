@@ -30,5 +30,26 @@ target 'Envision' do
       config[:reactNativePath],
       :mac_catalyst_enabled => false
     )
+    
+    # Set deployment target minimum
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+      end
+    end
+    
+    # Fix RNVectorIcons for iOS deployment target and headers
+    installer.pods_project.targets.each do |target|
+      if target.name == 'RNVectorIcons'
+        target.build_configurations.each do |config|
+          config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)', 'RNVI_SKIP_GOOGLE_FONTS=1']
+          # Add React header search paths
+          config.build_settings['HEADER_SEARCH_PATHS'] ||= ['$(inherited)']
+          config.build_settings['HEADER_SEARCH_PATHS'] << '$(PODS_ROOT)/../node_modules/react-native/React'
+          config.build_settings['HEADER_SEARCH_PATHS'] << '$(PODS_ROOT)/../node_modules/react-native/React/Base'
+          config.build_settings['HEADER_SEARCH_PATHS'] << '$(PODS_ROOT)/React'
+        end
+      end
+    end
   end
 end

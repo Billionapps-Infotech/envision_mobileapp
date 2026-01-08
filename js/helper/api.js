@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Constants from '../constants';
-import DeviceInfo from 'react-native-device-info';
+import DeviceInfo from './DeviceInfoMock';
 
 const api = axios.create({
     baseURL: Constants.url.base,

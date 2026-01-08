@@ -10,7 +10,7 @@ import {
     Dimensions
 } from 'react-native';
 import {globalColors, setToken, saveKey, getKey} from './helper';
-import DeviceInfo from 'react-native-device-info';
+import DeviceInfo from './helper/DeviceInfoMock';
 import store from './store';
 import stylecust from './component/helper/resfont';
 

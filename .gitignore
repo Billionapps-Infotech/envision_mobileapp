@@ -20,7 +20,14 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
+*.xcworkspace
 project.xcworkspace
+
+# CocoaPods
+#
+ios/Pods/
+ios/Podfile.lock
+ios/.xcode.env*
 
 # Android/IntelliJ
 #

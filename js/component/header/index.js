@@ -15,7 +15,7 @@ import { ifIphoneX , isIphoneX} from 'react-native-iphone-x-helper';
 import stylecust from '../helper/resfont';
 import DeviceInfo from 'react-native-device-info';
 
-import IconFont from 'react-native-vector-icons/FontAwesome';
+import IconFont from '../../helper/IconStub';
 
 type Props = {};
 export default class App extends Component<Props> {
