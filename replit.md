@@ -1,42 +1,14 @@
-# Envision - React Native Mobile Application
+# Envision - React Native Mobile Application (Expo)
 
 ## Overview
-Envision is a React Native mobile application designed for iOS and Android platforms. It provides user authentication, product catalog browsing, order management, and related business functionality.
-
-**Important**: This is a native mobile application that cannot run directly in Replit's web preview. It requires native iOS/Android development toolchains to build and run.
-
-## Recent Changes (React Native Upgrade)
-
-### Upgraded Dependencies
-- **React Native**: 0.58.4 → 0.73.4
-- **React**: 16.6.3 → 18.2.0
-- **MobX**: 4.x → 6.12.0 (uses makeObservable instead of decorators)
-- **Navigation**: react-native-router-flux → React Navigation 6.x
-- **Vector Icons**: 6.x → 10.x
-- **Device Info**: 2.x → 10.x
-- **Axios**: 0.17 → 1.6.7
-
-### Breaking Changes Applied
-1. **MobX 6 Migration**: Store now uses `makeObservable()` instead of decorator syntax
-2. **React Navigation 6**: Router completely rewritten using `@react-navigation/native-stack`
-3. **Unified Entry Point**: Single `index.js` replaces `index.android.js` and `index.ios.js`
-4. **Modern Metro Config**: New `metro.config.js` using `@react-native/metro-config`
-5. **Android Updates**:
-   - Gradle 8.6
-   - compileSdkVersion 34
-   - minSdkVersion 23
-   - Hermes engine enabled
-   - AndroidX support
-6. **iOS Updates**:
-   - CocoaPods integration (new Podfile)
-   - Hermes engine enabled
-   - Minimum iOS version updated
+Envision is a React Native mobile application built with Expo SDK 52. It provides user authentication via Keycloak, product catalog browsing, order management, and related business functionality.
 
 ## Technology Stack
-- **Framework**: React Native 0.73.4
+- **Framework**: React Native 0.76.9 with Expo SDK 52
 - **State Management**: MobX 6.12
 - **Navigation**: React Navigation 6.x
-- **UI Components**: React Native Vector Icons, Safe Area Context
+- **Authentication**: expo-auth-session (Keycloak OAuth2)
+- **UI Components**: @expo/vector-icons, react-native-safe-area-context
 - **Platforms**: iOS and Android
 
 ## Project Structure
@@ -45,95 +17,104 @@ Envision is a React Native mobile application designed for iOS and Android platf
 ├── js/                    # Main application code
 │   ├── component/         # UI components (header, drawer, login, home, etc.)
 │   ├── helper/            # Utilities, API, images, storage
+│   │   ├── deviceCompat.js    # expo-device compatibility wrapper
+│   │   ├── keycloakAuth.js    # Keycloak auth using expo-auth-session
+│   │   ├── navigation.js      # Navigation helper (Actions wrapper)
+│   │   └── iphoneXHelper.js   # Safe area compatibility wrapper
 │   ├── screens/           # Screen definitions
-│   ├── store/             # MobX store (updated for v6)
+│   ├── store/             # MobX store (MobX 6 syntax)
 │   ├── views/             # View components
-│   ├── App.js             # Main app component (updated)
-│   └── router.js          # React Navigation configuration (rewritten)
-├── android/               # Android native project (updated configs)
-├── ios/                   # iOS native project (with new Podfile)
-├── assets/                # Fonts and resources
-├── index.js               # Unified entry point (new)
-├── metro.config.js        # Metro bundler config (new)
-├── babel.config.js        # Babel config (updated)
+│   ├── App.js             # Main app component
+│   └── router.js          # React Navigation configuration
+├── assets/                # Fonts and icon resources
+├── .native_backup/        # Backup of original android/ios folders
+├── app.json               # Expo configuration
+├── eas.json               # EAS Build configuration
+├── babel.config.js        # Babel config with Flow support
+├── metro.config.js        # Metro bundler config
 ├── server.js              # Info page server (for Replit display)
-├── UPGRADE_PLAN.md        # Detailed upgrade documentation
-└── package.json           # Updated dependencies
+└── package.json           # Dependencies
 ```
 
-## Development Requirements
-To develop and run this app locally, you need:
+## Building APKs with EAS Build
 
-### For iOS Development
-- macOS with Xcode 15+ installed
-- iOS Simulator or physical device (iOS 13.4+)
-- CocoaPods for dependency management
+### Prerequisites
+1. Create a free Expo account at https://expo.dev
+2. Install EAS CLI: `npm install -g eas-cli`
+3. Log in: `eas login`
 
+### Build Commands
+
+#### Development Build (for testing with development tools)
 ```bash
-cd ios && pod install && cd ..
+eas build --profile development --platform android
 ```
 
-### For Android Development
-- Android Studio with Android SDK
-- Android Emulator or physical device (API 23+)
-- JDK 17+
-
-### React Native CLI Commands
+#### Preview APK (standalone APK for testing)
 ```bash
-# Install dependencies
-npm install
+eas build --profile preview --platform android
+```
 
-# Install iOS pods
-cd ios && pod install && cd ..
+#### Production AAB (for Google Play Store)
+```bash
+eas build --profile production --platform android
+```
 
-# Run on iOS (macOS only)
-npx react-native run-ios
+### Build Profiles (in eas.json)
+- **development**: Development client with dev tools, for internal testing
+- **preview**: Standalone APK for internal distribution/testing
+- **production**: Optimized AAB for Google Play Store submission
 
-# Run on Android
-npx react-native run-android
+### After Building
+1. Visit https://expo.dev to download your APK/AAB
+2. For preview builds, install the APK directly on Android devices
+3. For production, upload the AAB to Google Play Console
 
-# Start Metro bundler
+## Local Development
+
+### Start Metro Bundler
+```bash
 npm start
-
-# Clean and rebuild
-cd android && ./gradlew clean && cd ..
 ```
 
-## Migration Notes
+### Run in Expo Go (for quick testing)
+```bash
+npx expo start
+```
+Then scan QR code with Expo Go app on your phone.
+
+## Key Migration Notes
+
+### From React Native CLI to Expo
+- Uses Expo SDK 52 (managed workflow)
+- Native folders backed up to `.native_backup/`
+- EAS Build for cloud-based APK/AAB generation
+- No local Android Studio/Xcode required
+
+### Compatibility Wrappers Created
+1. **deviceCompat.js** - Replaces react-native-device-info with expo-device
+2. **iphoneXHelper.js** - Replaces react-native-iphone-x-helper with safe-area-context
+3. **keycloakAuth.js** - Replaces react-native-login-keycloak with expo-auth-session
+4. **navigation.js** - Provides `Actions` wrapper for React Navigation
+
+### MobX 6 Migration
+- Store uses `makeObservable()` instead of decorators
+- All `@observable` decorators removed from component code
+- Observable state managed in `js/store/index.js`
 
 ### Navigation Changes
-The app now uses React Navigation instead of react-native-router-flux. Key differences:
-- Use `navigation.navigate('ScreenName')` instead of `Actions.ScreenName()`
+- Uses React Navigation 6 instead of react-native-router-flux
+- `Actions.navigate()` wrapper available for backward compatibility
 - Screen components receive `navigation` prop automatically
-- Stack navigator handles screen transitions
 
-### MobX Store Changes
-The store uses the new MobX 6 API:
-- `makeObservable()` in constructor defines observables and actions
-- No more decorator syntax (@observable, @action)
-- Class arrow functions for actions
-
-### Removed Dependencies
-- react-native-router-flux (replaced by React Navigation)
-- react-native-iphone-x-helper (replaced by react-native-safe-area-context)
-- react-native-navigation (no longer needed)
-- Legacy babel plugins
-
-## Current State
-- Core configuration files updated for React Native 0.73
-- MobX store migrated to v6 syntax
-- Navigation rewritten for React Navigation 6
-- Android build configuration updated
-- iOS Podfile created for CocoaPods
-- Full app testing requires local native build environment
-
-## Known Issues
-- Some component files may need updates for React Navigation prop changes
-- Keycloak authentication library may need replacement (check compatibility)
-- Full testing requires Xcode/Android Studio environment
+## Keycloak Configuration
+Set these in `js/helper/keycloakAuth.js` before building:
+- `KEYCLOAK_URL`: Your Keycloak server URL
+- `KEYCLOAK_REALM`: Keycloak realm name
+- `KEYCLOAK_CLIENT_ID`: OAuth2 client ID
 
 ## Resources
-- [React Native Docs](https://reactnative.dev/docs/getting-started)
+- [Expo Docs](https://docs.expo.dev/)
+- [EAS Build Docs](https://docs.expo.dev/build/introduction/)
 - [React Navigation Docs](https://reactnavigation.org/docs/getting-started)
 - [MobX 6 Migration Guide](https://mobx.js.org/migrating-from-4-or-5.html)
-- [Upgrade Helper](https://react-native-community.github.io/upgrade-helper/)
