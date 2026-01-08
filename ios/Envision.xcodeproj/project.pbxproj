@@ -37,7 +37,6 @@
 		2D78BC1F2214331C00F9AE0A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D78BC1E2214331C00F9AE0A /* LaunchScreen.xib */; };
 		2D99F8C3221364A8009C803D /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D99F8C022136105009C803D /* libRNVectorIcons.a */; };
 		2D99F8C4221364AE009C803D /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D99F88722135EAD009C803D /* libReactNativeNavigation.a */; };
-		2D99F903221364E0009C803D /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D99F900221364D6009C803D /* libRNDeviceInfo.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* EnvisionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* EnvisionTests.m */; };
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		3A12A2008182426AB81D170F /* libRNVectorIcons-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E99C46B208F455191D66A18 /* libRNVectorIcons-tvOS.a */; };
@@ -176,20 +175,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = A39873CE1EA65EE60051E01A;
 			remoteInfo = "RNVectorIcons-tvOS";
-		};
-		2D99F8FF221364D6009C803D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 69B4891479454B4D8C133F9C /* RNDeviceInfo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DA5891D81BA9A9FC002B4DB2;
-			remoteInfo = RNDeviceInfo;
-		};
-		2D99F901221364D6009C803D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 69B4891479454B4D8C133F9C /* RNDeviceInfo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E72EC1401F7ABB5A0001BC90;
-			remoteInfo = "RNDeviceInfo-tvOS";
 		};
 		2DD335FC22C6458A00800A22 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -417,7 +402,6 @@
 		60EA3620E6124E9EB52E3C39 /* Lato-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Regular.ttf"; path = "../assets/fonts/Lato-Regular.ttf"; sourceTree = "<group>"; };
 		63FD5C831BA54664B1A3CFF9 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.ttf"; path = "../assets/fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		6900E94F8BBE4C7B957E7B37 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
-		69B4891479454B4D8C133F9C /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/ios/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		6A2E847A2F0FFCBA00885666 /* RNVectorIconsManager.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = RNVectorIconsManager.mm; path = "../node_modules/react-native-vector-icons/RNVectorIconsManager/RNVectorIconsManager.mm"; sourceTree = "<group>"; };
 		6E777D2534864734A8117BAA /* libReactNativeNavigation.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativeNavigation.a; sourceTree = "<group>"; };
 		7074DB8597244C7280084B42 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-MediumItalic.ttf"; path = "../assets/fonts/Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
@@ -467,7 +451,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D99F903221364E0009C803D /* libRNDeviceInfo.a in Frameworks */,
 				2D99F8C4221364AE009C803D /* libReactNativeNavigation.a in Frameworks */,
 				2D99F8C3221364A8009C803D /* libRNVectorIcons.a in Frameworks */,
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
@@ -674,15 +657,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2D99F8FB221364D6009C803D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2D99F900221364D6009C803D /* libRNDeviceInfo.a */,
-				2D99F902221364D6009C803D /* libRNDeviceInfo-tvOS.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		5E3FA6C165E64787AA57330A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -755,7 +729,6 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				7B0AA437C5B74261A2C2B43C /* ReactNativeNavigation.xcodeproj */,
 				9A5162BB6CE64A478F632B48 /* RNVectorIcons.xcodeproj */,
-				69B4891479454B4D8C133F9C /* RNDeviceInfo.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -999,10 +972,6 @@
 					ProjectRef = 7B0AA437C5B74261A2C2B43C /* ReactNativeNavigation.xcodeproj */;
 				},
 				{
-					ProductGroup = 2D99F8FB221364D6009C803D /* Products */;
-					ProjectRef = 69B4891479454B4D8C133F9C /* RNDeviceInfo.xcodeproj */;
-				},
-				{
 					ProductGroup = 2D99F8BB22136104009C803D /* Products */;
 					ProjectRef = 9A5162BB6CE64A478F632B48 /* RNVectorIcons.xcodeproj */;
 				},
@@ -1114,20 +1083,6 @@
 			fileType = archive.ar;
 			path = "libRNVectorIcons-tvOS.a";
 			remoteRef = 2D99F8C122136105009C803D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2D99F900221364D6009C803D /* libRNDeviceInfo.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNDeviceInfo.a;
-			remoteRef = 2D99F8FF221364D6009C803D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2D99F902221364D6009C803D /* libRNDeviceInfo-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libRNDeviceInfo-tvOS.a";
-			remoteRef = 2D99F901221364D6009C803D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		2DD335FD22C6458A00800A22 /* libjsi.a */ = {
@@ -1405,10 +1360,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Envision-EnvisionTests/Pods-Envision-EnvisionTests-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/RNDeviceInfo/RNDeviceInfoPrivacyInfo.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/RCTI18nStrings.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RNDeviceInfoPrivacyInfo.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RCTI18nStrings.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1437,10 +1394,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Envision/Pods-Envision-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/RNDeviceInfo/RNDeviceInfoPrivacyInfo.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/RCTI18nStrings.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RNDeviceInfoPrivacyInfo.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RCTI18nStrings.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -18,7 +18,7 @@ import {Actions} from 'react-native-router-flux';
 import Header from '../../../header';
 import IphoneHeader from '../../../header/iphonexhr';
 import Icon from '../../../icon';
-import IconFont from '../../../helper/IconStub';
+import IconFont from '../../../../helper/IconStub';
 
 type Props = {};
 export default class App extends Component<Props> {
